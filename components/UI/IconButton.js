@@ -1,10 +1,19 @@
 import { View,Pressable, StyleSheet } from 'react-native'
 import React from 'react'
 import {Ionicons} from "@expo/vector-icons";
-
+import { useNavigation } from '@react-navigation/native';
 const IconButton = ({icon,size,color,onPress}) => {
+
+    const navigation = useNavigation();
+
+    const addExpenseHandler = ()=>{
+
+        navigation.navigate('ManangeExpense');
+
+    };
+
   return (
-            <Pressable onPress={onPress} style={({pressed})=> pressed && styles.pressed }>
+            <Pressable onPress={addExpenseHandler} style={({pressed})=> pressed && styles.pressed }>
                 <View style={styles.buttonContainer}>
                       <Ionicons name={icon} size={size} color={color} />  
                 </View>

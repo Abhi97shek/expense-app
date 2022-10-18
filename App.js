@@ -1,5 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet} from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -14,8 +13,8 @@ const BottomTabs = createBottomTabNavigator();
 
 function ExpenseOverview(){
 
-  return (
-      <BottomTabs.Navigator screenOptions={{
+  return ( 
+      <BottomTabs.Navigator screenOptions={({navigation})=>({
           headerStyle:{
             backgroundColor:GlobalStyles.colors.primary500},
             headerTintColor:'white',
@@ -24,10 +23,10 @@ function ExpenseOverview(){
             tabBarActiveTintColor:GlobalStyles.colors.accent500,
             headerRight:({tintColor})=>{
                 return (
-                    <IconButton icon="add" size={24} color={tintColor}/>
+                    <IconButton icon="add" size={24} color={tintColor} />
                 )
-            }
-      }}>
+            },
+      })}>
           <BottomTabs.Screen name="RecentExpenses" component={RecentExpense} 
           options={{
             title:"Recent Expenses",
@@ -54,10 +53,17 @@ export default function App() {
   return (
     <>
       <NavigationContainer>
-          <Stack.Navigator>
+          <Stack.Navigator screenOptions={{
+            headerStyle:{backgroundColor:GlobalStyles.colors.primary500},
+            headerTintColor:'white'
+          }}>
             <Stack.Screen name="ExpensesOverview" component={ExpenseOverview}  
             options={{headerShown:false}}/>
-              <Stack.Screen name="ManangeExpense" component={ManageExpense} />
+              <Stack.Screen name="ManangeExpense" component={ManageExpense}  options={{
+                title:"Manage Expense",
+                presentation:'modal'
+              }}
+                />
               
           </Stack.Navigator>
       </NavigationContainer>

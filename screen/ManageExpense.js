@@ -1,7 +1,25 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 
-const AllExpense = () => {
+const ManageExpense = ({route,navigation}) => {
+
+  const editedExpenseId = route.params?.expenseId; //Drilling a Object
+
+  const isEditing = !!editedExpenseId; // Convert Value into Boolean
+
+  useLayoutEffect(()=>{
+    navigation.setOptions({
+      title:isEditing? "Edit Expense" : "Add Expense"
+    });
+  },[navigation,isEditing]);
+
+
+  if(isEditing)
+    {
+
+    }
+
+
   return (
     <View>
       <Text>Manage Expense Screen</Text>
@@ -9,4 +27,4 @@ const AllExpense = () => {
   )
 }
 
-export default AllExpense
+export default ManageExpense
