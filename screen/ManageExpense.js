@@ -2,6 +2,7 @@ import { View, Text,StyleSheet } from 'react-native'
 import React, { useLayoutEffect } from 'react';
 import {Ionicons} from "@expo/vector-icons"
 import { GlobalStyles } from '../constants/styles';
+import Button from '../components/UI/Button';
 
 const ManageExpense = ({route,navigation}) => {
 
@@ -17,12 +18,22 @@ const ManageExpense = ({route,navigation}) => {
 
 
   const deleteExpenseHandler =()=>{
+  };
+
+  const cancelHandler = ()=>{
+  };
+
+  const confirmHandler= ()=>{
 
 
   };
 
   return (
     <View style={styles.container}> 
+    <View style={styles.buttonContainer}>
+        <Button mode="flat" onPress={cancelHandler} style={styles.button}>Cancel</Button>
+        <Button onPress={confirmHandler} style={styles.button}>{isEditing ? 'Update': 'Add'}</Button>
+    </View>
       <View style={styles.deleteContainer}>
         {isEditing && <Ionicons name="trash" color={GlobalStyles.colors.error500} size={36} onPress={deleteExpenseHandler}/>}
       </View>
@@ -46,6 +57,15 @@ const styles = StyleSheet.create({
       borderTopWidth:2,
       borderTopColor:GlobalStyles.colors.primary200,
       alignItems:'center'
+  },
+  buttonContainer:{
+    flexDirection:'row',
+    justifyContent:'center',
+    alignItems:'center'
+  },
+  button:{
+    minWidth:120,
+    marginHorizontal:8
   }
 
 
